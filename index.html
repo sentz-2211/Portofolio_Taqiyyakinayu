@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Beranda Taqiyya</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/icon.png" />
+    <!-- Font Awesome icons (free version)-->
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+      #slideshow {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px 0;
+      }
+      
+      .carousel-inner img {
+        border-radius: 20px;
+        max-height: 400px;
+        object-fit: cover;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .carousel-indicators button {
+        background-color: #e67e22;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin: 0 5px;
+      }
+      
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        background-color: #e67e22 ;
+        border-radius: 50%;
+        padding: 10px;
+      }
+      
+      .carousel-control-prev:hover, .carousel-control-next:hover {
+        opacity: 0.9;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      /* Animasi untuk Profil */
+      #scroll .col-lg-6.order-lg-1 {
+        animation: slideInLeft 1s ease-out forwards;
+      }
+      
+      #scroll .col-lg-6.order-lg-2 {
+        animation: slideInRight 1s ease-out forwards;
+      }
+      
+      /* Animasi untuk Pameran */
+      section.py-5 .col-lg-8 {
+        animation: fadeInUp 1s ease-out forwards;
+      }
+      
+      .card {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1s ease-out forwards;
+      }
+      
+      .card:nth-child(1) { animation-delay: 0.2s; }
+      .card:nth-child(2) { animation-delay: 0.4s; }
+      .card:nth-child(3) { animation-delay: 0.6s; }
+
+      /* Efek animasi */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Efek aktif saat elemen masuk viewport */
+.show {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+      
+    </style>
+  </head>
+  <body id="page-top">
+    <!-- Navigation-->
+    <div id="navbar-container"></div>
+
+    <!-- Header-->
+    <header class="masthead text-center text-white">
+      <div class="masthead-content">
+        <div class="container px-5">
+          <h1 class="masthead-heading mb-0">Selamat datang di situs</h1>
+          <h2 class="masthead-subheading mb-0">Taqiyya Kinayu Aruming Jagad</h2>
+          <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll"
+            >Read More</a
+          >
+        </div>
+      </div>
+    </header>
+    <!-- Content section 1-->
+    <section id="scroll">
+      <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+          <div class="col-lg-6 order-lg-2">
+            <div class="p-5">
+              <img
+                class="img-fluid rounded-circle"
+                src="assets/img/profile.jpeg"
+                alt="..."
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 order-lg-1">
+            <div class="p-5">
+              <h2 class="display-4">Taqiyya Kinayu Aruming Jagad</h2>
+              <p>
+                Melukis telah menjadi bagian dari hidup saya sejak kecil. Kini,
+                saya adalah mahasiswa aktif di ISI Yogyakarta yang terus
+                mengeksplorasi berbagai teknik dan media seni untuk
+                mengekspresikan gagasan dan pemikiran saya.
+              </p>
+              <a class="about" href="/about.html">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Content section 2-->
+    <!-- <section>
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/02.jpg" alt="..." /></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <h2 class="display-4">We salute you!</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Content section 3-->
+    <!-- <section>
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/03.jpg" alt="..." /></div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="p-5">
+                            <h2 class="display-4">Let there be rock!</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+    -->
+    <!-- Pameran Keagungan Ilahi -->
+    <section class="py-5">
+      <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+          <div class="col-lg-8 text-center mb-5">
+            <h2 class="display-4">RECITING WRITTEN AND UNWRITTEN VERSES</h2>
+          </div>
+        </div>
+        <div class="row gx-5">
+          <!-- Karya 1 -->
+          <div class="col-lg-4 mb-4 fade-in-up">
+            <div class="card h-100 shadow">
+              <img
+                src="assets/foto_karya/basmalah.jpeg"
+                class="card-img-top img-fluid"
+                alt="Karya 1"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Basmallah</h5>
+                <p class="card-text">
+                  Karya ini menampilkan lafadz Basmallah sebagai elemen utama yang
+                  dikelilingi oleh bentuk menyerupai orbit planet atau gerakan benda-benda langit.
+                  Visualisasi ini mengilustrasikan keteraturan dan harmoni alam semesta yang
+                  tunduk pada kehendak Allah. Warna-warna dominan, seperti hijau, ungu, dan
+                  kuning, memberikan nuansa keseimbangan serta harmoni, mencerminkan
+                  keindahan.
+                </p>
+                <a class="history" href="/gallery.html">Read More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Karya 2 -->
+          <div class="col-lg-4 mb-4 fade-in-up">
+            <div class="card h-100 shadow">
+              <img
+                src="assets/foto_karya/metronome.jpeg"
+                class="card-img-top img-fluid"
+                alt="Karya 2"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Metronome</h5>
+                <p class="card-text">
+                  Para ilmuwan terkejut oleh penemuan suara misterius dari bintang yang
+                  terdengar seperti ketukan pintu. Rasulullah SAW telah menyampaikan fenomena
+                  ini 1400 tahun lalu dalam Al-Qur'an, Surah At-Thariq, yang berarti "bintang
+                  pengetuk pintu" dan dijelaskan menghasilkan suara seperti ketukan pintu yang
+                  keras. 
+                </p>
+                <a class="history" href="/gallery.html">Read More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Karya 3 -->
+          <div class="col-lg-4 mb-4 fade-in-up">
+            <div class="card h-100 shadow">
+              <img
+                src="assets/foto_karya/jabal an-nur.jpeg"
+                class="card-img-top img-fluid"
+                alt="Karya 3"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Jabal An-Nur</h5>
+                <p class="card-text">
+                  Karya ini menggambarkan Jabal Nur, sebuah bukit bersejarah dalam
+                  Islam yang menjadi lokasi turunnya wahyu pertama kepada Nabi Muhammad
+                  SAW, tepatnya di Gua Hira melalui Malaikat Jibril. Di puncak bukit ini terdapat
+                  Gua Hira, tempat Nabi Muhammad sering bertafakur sebelum menerima wahyu.
+                </p>
+                <a class="history" href="/gallery.html">Read More</a>
+              </div>
+            </div>
+          </div>
+          <div id="slideshow" class="container px-5">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="assets/img/carousel.jpeg" class="d-block w-100" alt="Slide 1">
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/carousel1.jpeg" class="d-block w-100" alt="Slide 2">
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/about4.jpeg" class="d-block w-100" alt="Slide 3">
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/carousel2.jpeg" class="d-block w-100" alt="Slide 4">
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/carousel3.jpeg" class="d-block w-100" alt="Slide 5">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+        </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer-->
+    <div id="footer-container"></div>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+      const scrollElements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right');
+    
+      const scrollReveal = () => {
+        scrollElements.forEach((el) => {
+          const elementTop = el.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+    
+          if (elementTop < windowHeight - 100) {
+            el.classList.add('show');
+          } else {
+            el.classList.remove('show');
+          }
+        });
+      };
+    
+      window.addEventListener('scroll', scrollReveal);
+    
+      // Panggil sekali biar kalau elemen udah kelihatan waktu load, langsung muncul
+      scrollReveal();
+    </script>
+    
+  </body>
+</html>

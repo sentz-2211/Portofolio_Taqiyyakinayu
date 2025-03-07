@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/icon.png" />
+    <!-- Font Awesome icons (free version)-->
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Style untuk tombol deskripsi */
+      .desc-btn {
+        background-color: #e67e22; /* Warna hijau yang lebih cerah */
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 25px; /* Tombol lebih bulat */
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: 1rem;
+        transition: all 0.3s ease;
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .desc-btn::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background-color: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%) scale(0);
+        border-radius: 50%;
+        transition: transform 0.5s ease;
+      }
+
+      .desc-btn:hover {
+        background-color: #9c4b04; /* Warna hijau lebih gelap saat hover */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .desc-btn:active::after {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+
+      /* Style untuk deskripsi lengkap */
+      .full-description {
+        display: none;
+        margin-top: 1rem;
+        padding: 1rem;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f9f9f9;
+        border-left: 4px solid #e67e22;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Efek hover untuk deskripsi */
+      .full-description:hover {
+        background-color: #f1f1f1;
+        transition: background-color 0.3s ease;
+      }
+      /* Tambahan CSS untuk struktur baru */
+      .gallery-item-wrapper {
+        position: relative;
+        margin-bottom: 2rem;
+      }
+
+      .desc-btn {
+        margin-top: 1rem;
+        width: calc(100% - 2rem);
+        position: relative;
+        left: 1rem;
+        z-index: 1; /* Pastikan tombol di atas elemen lain */
+      }
+
+      /* Pertahankan semua style aslinya di bawah ini */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .parallax-header {
+        height: 77vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("assets/img/galerr.jpeg") center/cover fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header-content {
+        text-align: center;
+        color: white;
+        animation: fadeInUp 1s ease;
+      }
+
+      .header-content h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .gallery-container {
+        max-width: 1200px;
+        margin: 5rem auto;
+        padding: 0 20px;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 2rem 0;
+      }
+
+      .gallery-item {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        margin-bottom: 0; /* Reset margin */
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-10px);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .item-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+        padding: 2rem 1rem 1rem;
+        color: white;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover .item-overlay {
+        transform: translateY(0);
+      }
+
+      .item-overlay h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+      }
+
+      .item-overlay p {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      .full-description {
+        display: none;
+        margin-top: 1rem;
+        padding: 0 1rem;
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      /* Lightbox Styles */
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .lightbox.active {
+        display: flex;
+      }
+
+      .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+      }
+
+      .lightbox-img {
+        max-width: 100%;
+        max-height: 80vh;
+        border-radius: 10px;
+      }
+
+      .lightbox-caption {
+        color: white;
+        text-align: center;
+        margin-top: 1rem;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Parallax Header -->
+    <header class="parallax-header">
+      <div class="header-content">
+        <h1>Creative Gallery</h1>
+        <p>Discover Our Amazing Works</p>
+      </div>
+    </header>
+
+    <!-- Gallery Section -->
+    <section class="gallery-container">
+      <div class="gallery-grid">
+        <!-- Item 1 -->
+        <div class="gallery-item-wrapper">
+          <div class="gallery-item">
+            <img src="/assets/foto_karya/basmalah.jpeg" alt="Tech Innovation" />
+            <div class="item-overlay">
+              <h3>Basmallah</h3>
+            </div>
+          </div>
+          <button class="desc-btn" onclick="toggleDescription(this)">
+            Lihat Deskripsi
+          </button>
+          <p class="full-description">
+            Karya ini menampilkan lafadz Basmallah sebagai elemen utama yang
+            dikelilingi oleh bentuk menyerupai orbit planet atau gerakan
+            benda-benda langit. Visualisasi ini mengilustrasikan keteraturan dan
+            harmoni alam semesta yang tunduk pada kehendak Allah. Warna-warna
+            dominan, seperti hijau, ungu, dan kuning, memberikan nuansa
+            keseimbangan serta harmoni, mencerminkan keindahan. Karya
+            menggunakan media rotan sebagai komponen garis utama yang
+            mengelilingi pusat komposisi. Garis-garis rotan ini membentuk pola
+            tidak beraturan yang kontras dengan harmoni warna, menunjukkan
+            perpaduan antara keterbatasan manusia dan kebesaran Allah.
+          </p>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="gallery-item-wrapper">
+          <div class="gallery-item">
+            <img
+              src="/assets/foto_karya/metronome.jpeg"
+              alt="Future Solutions"
+            />
+            <div class="item-overlay">
+              <h3>Metronome</h3>
+            </div>
+          </div>
+          <button class="desc-btn" onclick="toggleDescription(this)">
+            Lihat Deskripsi
+          </button>
+          <p class="full-description">
+            Para ilmuwan terkejut oleh penemuan suara misterius dari bintang
+            yang terdengar seperti ketukan pintu. Rasulullah SAW telah
+            menyampaikan fenomena ini 1400 tahun lalu dalam Al-Qur'an, Surah
+            At-Thariq, yang berarti "bintang pengetuk pintu" dan dijelaskan
+            menghasilkan suara seperti ketukan pintu yang keras. Suara dari
+            bintang tersebut bukan hanya penemuan ilmiah, tetapi juga tanda
+            kebesaran Ilahi yang menegaskan bahwa ilmu pengetahuan dan iman
+            berjalan beriringan dalam menyingkap keajaiban ciptaan Tuhan.
+            Lengkungan rotan yang melingkar dan melengkung keluar tak hanya
+            bernilai estetika, tapi juga merepresentasikan simbol-simbol sinyal
+            di luar angkasa. Dalam konteks artistik, lengkungan ini menciptakan
+            gambaran perjalanan antarbintang, waktu, atau dimensi yang tak
+            terbayangkan. Sebagai lambang keajaiban alam semesta, ia
+            mengisyaratkan eksplorasi, penemuan, dan ketidakpastian
+          </p>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="gallery-item-wrapper">
+          <div class="gallery-item">
+            <img
+              src="/assets/foto_karya/jabal an-nur.jpeg"
+              alt="Professional Team"
+            />
+            <div class="item-overlay">
+              <h3>Jabal an-Nur</h3>
+            </div>
+          </div>
+          <button class="desc-btn" onclick="toggleDescription(this)">
+            Lihat Deskripsi
+          </button>
+          <p class="full-description">
+            Karya ini menggambarkan Jabal Nur, sebuah bukit bersejarah dalam
+            Islam yang menjadi lokasi turunnya wahyu pertama kepada Nabi
+            Muhammad SAW, tepatnya di Gua Hira melalui Malaikat Jibril. Di
+            puncak bukit ini terdapat Gua Hira, tempat Nabi Muhammad sering
+            bertafakur sebelum menerima wahyu. Gua Hira memiliki peran sebagai
+            simbol refleksi dan kontemplasi, yang menjadi titik awal dari misi
+            kenabian dan risalah Al-Qur'an. Visualisasi karya ini memadukan
+            bentuk curam dan berbatu khas Jabal Nur dengan penekanan pada area
+            gelap di bagian tengah untuk merepresentasikan Gua Hira. Warna
+            dominan seperti cokelat tua dan hitam mencerminkan kondisi fisik
+            bukit. Tekstur kasar pada karya ini memberikan kesan monumental, dan
+            elemen vertikal di bagian atas menggambarkan pancaran cahaya atau
+            nur. Karya ini menggunakan berbagai teknik dengan material
+            bertekstur, seperti cat akrilik, dan elemen metalik. Gua Hira
+            direpresentasikan dengan elemen gelap pada bagian tengah, memberikan
+            fokus pada simbolisasi momen penting yang terjadi di dalamnya.
+            Kombinasi pewarnaan berlapis dan material
+          </p>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="gallery-item-wrapper">
+          <div class="gallery-item">
+            <img
+              src="/assets/foto_karya/rekonstruksi.jpeg"
+              alt="Achievements"
+            />
+            <div class="item-overlay">
+              <h3>Rekonstruksi</h3>
+            </div>
+          </div>
+          <button class="desc-btn" onclick="toggleDescription(this)">
+            Lihat Deskripsi
+          </button>
+          <p class="full-description">
+            Karya ini merupakan refleksi dari QS. Al-Qiyamah: 4. Ayat ini
+            menegaskan kekuasaan Allah dalam menciptakan manusia secara unik,
+            termasuk sidik jari yang menjadi identitas khas setiap individu.
+            Melalui karya ini, diungkapkan keajaiban sidik jari yang menjadi
+            bukti kebesaran Allah SWT, sekaligus merepresentasikan betapa detail
+            dan sempurnanya penciptaan manusia. Garis-garis yang tidak terputus
+            menegaskan bahwa setiap individu memiliki cerita dan identitas yang
+            terus berlanjut. Struktur patahan di sekitar karya menunjukkan
+            bagaimana manusia, meski memiliki identitas berbeda-beda, tetap
+            menjadi bagian dari kesatuan alam ciptaan Allah. Karya ini dibuat
+            menggunakan teknik campuran, memadukan media akrilik dan material
+            daur ulang seperti serat alami. Teknik layering dan kolase digunakan
+            untuk menggambarkan pola-pola melingkar, sedangkan tekstur timbul
+            dibuat dengan material tali polyester untuk menciptakan efek tiga
+            dimensi
+          </p>
+        </div>
+
+        <div class="gallery-item-wrapper">
+          <div class="gallery-item">
+            <img
+              src="/assets/foto_karya/Gegana - Taqiyya Kinayu Aruming Jagad - 2024.png"
+              alt="Professional Team"
+            />
+            <div class="item-overlay">
+              <h3>Gegana</h3>
+            </div>
+          </div>
+          <button class="desc-btn" onclick="toggleDescription(this)">
+            Lihat Deskripsi
+          </button>
+          <p class="full-description">
+            “Gegana” merupakan sebuah karya seni yang menggambarkan keindahan
+            dan keteraturan alam semesta, sesuai dengan ketetapan Ilahi
+            sebagaimana diungkapkan dalam QS. Yasin: 40. Karya ini menghadirkan
+            representasi matahari dan bulan dengan garis edar mereka yang tetap
+            dan teratur. Visualisasi ini menunjukkan bagaimana matahari tidak
+            menyimpang dari jalurnya, tidak mempercepat atau memperlambat
+            perjalanan hingga mendahului bulan. Demikian pula bulan, yang tetap
+            mengikuti garis edar yang telah ditetapkan. Kedua benda langit ini,
+            bersama dengan elemen langit lainnya, terus bergerak dalam harmoni
+            sempurna yang mencerminkan keteraturan ciptaan Allah SWT.
+            Garis-garis melingkar yang mengelilingi elemen-elemen tersebut,
+            menciptakan ilusi pergerakan dan keseimbangan kosmik. Karya ini
+            diciptakan menggunakan perpaduan berbagai teknik dengan garis-garis
+            melingkar yang tumpang tindih untuk menciptakan kesan gerakan
+            kontinu
+          </p>
+        </div>
+
+        <div class="gallery-item-wrapper">
+          <div class="gallery-item">
+            <img
+              src="/assets/foto_karya/Lara Bentala - Taqiyya Kinayu Aruming Jagad - 2024.png"
+              alt="Professional Team"
+            />
+            <div class="item-overlay">
+              <h3>Lara Bentala</h3>
+            </div>
+          </div>
+          <button class="desc-btn" onclick="toggleDescription(this)">
+            Lihat Deskripsi
+          </button>
+          <p class="full-description">
+            Karya ini mengangkat tema kerusakan alam akibat eksploitasi manusia
+            yang berlebihan, seperti aktivitas pertambangan nikel, emas, perak,
+            tembaga, dan timah. Fenomena ini sesuai dengan firman Allah SWT
+            dalam QS. Ar-Rum: 41. Ayat ini menjadi peringatan bagi manusia untuk
+            tidak merusak keseimbangan alam. Aktivitas pertambangan telah
+            mengakibatkan erosi tanah, pencemaran lingkungan, hilangnya
+            keanekaragaman hayati, dan perubahan ekosistem yang berdampak jangka
+            panjang. Visualisasi karya ini menggambarkan lapisan tanah yang
+            tergerus dengan tekstur kasar dan lapisan-lapisan yang menunjukkan
+            erosi akibat eksploitasi tambang. Warna coklat gelap mencerminkan
+            lapisan bumi yang rusak, sementara garis-garis berliku menggambarkan
+            bekas aktivitas manusia yang meninggalkan luka pada alam. Latar
+            belakang karya memuat warna-warna gelap yang menciptakan suasana
+            muram, menunjukkan dampak kerusakan lingkungan secara menyeluruh.
+            Karya ini menggunakan teknik mixed media dengan material seperti cat
+            akrilik, modeling paste, tali polyester, dan lain-lain untuk
+            menciptakan efek erosi dan ketidakteraturan. Sentuhan warna kontras
+            antara area rusak dan area hijau yang minim menyoroti perbedaan
+            drastis antara kehancuran dan kehidupan yang seharusnya ada
+          </p>
+        </div>
+
+        <div class="gallery-item-wrapper">
+          <div class="gallery-item">
+            <img
+              src="/assets/foto_karya/luka bumi.jpeg"
+              alt="Professional Team"
+            />
+            <div class="item-overlay">
+              <h3>Luka Bumi</h3>
+            </div>
+          </div>
+          <button class="desc-btn" onclick="toggleDescription(this)">
+            Lihat Deskripsi
+          </button>
+          <p class="full-description">
+            QS. Ar-Rum ayat 41 memberi peringatan tentang pentingnya
+            memperhatikan dampak dari aktivitas manusia terhadap lingkungan.
+            Melihat kerusakan dari kegiatan pertambangan, seperti erosi tanah
+            yang mengancam kesuburan lahan pertanian, deforestasi yang merugikan
+            habitat alami bagi flora dan fauna darat, serta pencemaran yang
+            mengganggu ekosistem laut, menjadikan kita semakin sadar akan
+            kebutuhan untuk mempertimbangkan konsekuensi sebelum bertindak.
+            Kerusakan lingkungan yang terjadi akibat aktivitas pertambangan
+            tidak hanya mempengaruhi wilayah tertentu, tetapi juga memiliki
+            dampak yang meluas dan berjangka panjang terhadap keseluruhan
+            ekosistem. Dengan memahami konsekuensi dari tindakan kita, sesuai
+            dengan pesan dalam ayat tersebut, kita diharapkan akan menjadi lebih
+            bertanggung jawab dalam menjaga lingkungan dan alam semesta, serta
+            mengikuti prinsip-prinsip yang benar dalam hubungan kita dengan alam
+          </p>
+        </div>
+
+        <div class="gallery-item-wrapper">
+          <div class="gallery-item">
+            <img
+              src="/assets/foto_karya/Miracle of زمزم.jpeg"
+              alt="Professional Team"
+            />
+            <div class="item-overlay">
+              <h3>Miracle of مزﻣز</h3>
+            </div>
+          </div>
+          <button class="desc-btn" onclick="toggleDescription(this)">
+            Lihat Deskripsi
+          </button>
+          <p class="full-description">
+            Karya ini menggambarkan bentuk molekul air zam-zam yang dikenal
+            sebagai air suci dalam Islam. Air ini memiliki kandungan mineral
+            tinggi, bebas kuman, dan tetap stabil tanpa perubahan rasa atau bau.
+            Penelitian Masaru Emoto menunjukkan bahwa kristal zam-zam membentuk
+            pola unik dan tetap murni meskipun bercampur dengan air biasa. Fakta
+            ini membedakannya dari air mineral lainnya. Visualisasi karya ini
+            menonjolkan bentuk kristal air zam-zam yang unik. Pola kristal
+            digambarkan dalam bentuk simetris bercabang enam, mencerminkan
+            struktur molekul yang sempurna saat dibekukan. Pilihan warna biru,
+            hijau, dan ungu memberikan kesan kesegaran dan kemurnian yang
+            menggambarkan sifat alami air zam-zam. Karya ini dibuat menggunakan
+            warna gradasi untuk menghasilkan efek transparan yang menyerupai
+            air. Detail pola simetris dibuat dengan presisi untuk mencerminkan
+            hasil pengamatan ilmiah terhadap struktur molekul zam-zam. Teknik
+            tekstur dan pencahayaan menonjolkan keindahan bentuk kristalnya.
+          </p>
+        </div>
+
+        <div class="gallery-item-wrapper">
+          <div class="gallery-item">
+            <img src="/assets/foto_karya/poros.jpeg" alt="Professional Team" />
+            <div class="item-overlay">
+              <h3>Poros</h3>
+            </div>
+          </div>
+          <button class="desc-btn" onclick="toggleDescription(this)">
+            Lihat Deskripsi
+          </button>
+          <p class="full-description">
+            Keinginan kuat untuk melakukan salah satu rukun haji yaitu tawaf,
+            telah membentuk pandangan imajinatif saya terhadap cara merespons
+            peristiwa yang tampak dan tidak tampak selama pelaksanaan tawaf.
+            Tawaf, sebagai manifestasi fisik dari tawakal dan pengabdian
+            sepenuhnya kepada Allah, mengajarkan nilai-nilai kesederhanaan,
+            persaudaraan, dan penerimaan takdir sebagai bagian integral dalam
+            kehidupan sehari-hari. Tawaf tidak hanya mencerminkan hubungan
+            individu dengan Allah, tetapi juga mencerminkan persatuan dan
+            kesatuan umat Muslim. Gerakan melingkar pada tawaf, dengan satu
+            poros sebagai pusatnya, menjadi representasi simbolis dari kesatuan
+            umat Islam. Secara keseluruhan, karya ini disusun dengan komposisi
+            memusat, memudahkan pemahaman akan makna mendalam yang terkandung
+            dalam tawaf
+          </p>
+        </div>
+        <div class="gallery-item-wrapper">
+          <div class="gallery-item">
+            <img
+              src="/assets/foto_karya/the dancing of cloud.jpeg"
+              alt="Professional Team"
+            />
+            <div class="item-overlay">
+              <h3>The Dancing Of Cloud</h3>
+            </div>
+          </div>
+          <button class="desc-btn" onclick="toggleDescription(this)">
+            Lihat Deskripsi
+          </button>
+          <p class="full-description">
+            Karya ini mengangkat tema harmoni alam melalui fenomena angin, awan,
+            hujan, dan pelangi yang bekerja bersama menciptakan kesejukan,
+            kesuburan, dan penyegaran bagi semua makhluk. Fenomena ini merujuk
+            pada QS. Ar-Rum: 48, yang menggambarkan bagaimana angin menggerakkan
+            awan sebagai bagian dari rekayasa Ilahi. Angin membawa awan yang
+            sebelumnya diam menuju arah dan lokasi yang dikehendaki-Nya, lalu
+            menjadikannya bergumpal-gumpal. Dari celah-celah awan tersebut,
+            hujan turun, menghadirkan berkah bagi kehidupan di bumi. Perpaduan
+            susunan garis lengkung dan bidang dinamis merepresentasikan angin
+            dan pelangi. Warna-warna cerah dan kontras, seperti biru, merah, dan
+            kuning menciptakan kesan hidup, selaras dengan tema alam. Karya ini
+            diciptakan menggunakan media campuran (mixed media) dengan teknik
+            layering pada kanvas. Penambahan material rotan sebagai struktur
+            utama menciptakan elemen yang menyiratkan pergerakan dinamis,
+            seperti angin yang berhembus atau hujan yang turun
+          </p>
+        </div>
+
+        <div class="gallery-item-wrapper">
+          <div class="gallery-item">
+            <img
+              src="/assets/foto_karya/swara nabastala.jpeg"
+              alt="Professional Team"
+            />
+            <div class="item-overlay">
+              <h3>Swara Nabastala</h3>
+            </div>
+          </div>
+          <button class="desc-btn" onclick="toggleDescription(this)">
+            Lihat Deskripsi
+          </button>
+          <p class="full-description">
+            Karya ini terinspirasi dari fenomena petir dalam Al-Qur'an yang
+            digambarkan sebagai bentuk tasbih kepada Allah. Dalam QS. Al-Isra:
+            44 dan QS. Ar-Ra’d: 13, petir dipahami sebagai tanda kekuasaan Allah
+            yang mengingatkan manusia akan ketundukan alam semesta kepada-Nya.
+            Karya ini menampilkan pola bercabang yang menyerupai aliran petir
+            dari pusat lingkaran. Warna ungu mendominasi, memberikan kesan
+            spiritual, sementara oranye melambangkan kekuatan dan energi petir.
+            Pola bercabang menunjukkan gerakan dinamis yang penuh energi. Karya
+            dibuat dengan teknik campuran (mixed media), menggabungkan teknik
+            kolase untuk pola bercabang seperti petir yang terbuat dari tali
+            polyester. Penggunaan warna dari cat semprot diterapkan untuk
+            menciptakan efek transparansi. Permainan gradien warna, dari ungu
+            yang pekat hingga oranye yang mencolok, menambah kesan dramatis dan
+            intens pada karya ini
+          </p>
+        </div>
+
+        <div class="gallery-item-wrapper">
+          <div class="gallery-item">
+            <img
+              src="/assets/foto_karya/BigBang.jpeg"
+              alt="Professional Team"
+            />
+            <div class="item-overlay">
+              <h3>BigBang</h3>
+            </div>
+          </div>
+          <button class="desc-btn" onclick="toggleDescription(this)">
+            Lihat Deskripsi
+          </button>
+          <p class="full-description">
+            Karya ini menggambarkan penciptaan alam semesta berdasarkan teori
+            Big Bang, yang mengungkapkan bahwa alam semesta dan segala isinya
+            awalnya bersatu dalam keadaan padat dan panas sebelum terpisah
+            akibat ledakan besar. Perspektif ini sejalan dengan firman Allah
+            dalam QS. Al-Anbiya: 30. Ayat ini menggambarkan keteraturan dan
+            keajaiban penciptaan alam semesta. Visualisasi karya ini menampilkan
+            bentuk-bentuk kosmik yang abstrak, merepresentasikan ledakan dan
+            perkembangan alam semesta. Elemen lingkaran mencerminkan gerakan
+            serta ekspansi alam semesta, sedangkan warna-warna gelap dengan
+            percikan warna cerah seperti biru, emas, dan putih menggambarkan
+            proses transisi dari kehampaan menjadi cahaya dan kehidupan. Karya
+            ini dibuat menggunakan teknik airbrush, kolase, dan layering dengan
+            menggunakan cat akrilik, cat semprot, dan elemen metalik.
+            Teknik-teknik ini digunakan untuk memberikan kesan ledakan energi,
+            sementara garis-garis abstrak yang menggunakan material tusuk sate
+            menambahkan dimensi dinamis pancaran cahaya pada karya. Penggunaan
+            warna kontras antara kegelapan dan cahaya memperkuat tema penciptaan
+            dan ekspansi alam semesta
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Memuat Navbar dan Footer -->
+    <div id="navbar-container"></div>
+    <div id="footer-container"></div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <script src="js/components.js"></script>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+      <div class="lightbox-content">
+        <span class="close-btn">&times;</span>
+        <img class="lightbox-img" src="" alt="" />
+        <div class="lightbox-caption"></div>
+      </div>
+    </div>
+
+    <script>
+      // Lightbox functionality (updated selector)
+      const galleryItems = document.querySelectorAll(".gallery-item");
+      const lightbox = document.querySelector(".lightbox");
+      const lightboxImg = document.querySelector(".lightbox-img");
+      const lightboxCaption = document.querySelector(".lightbox-caption");
+      const closeBtn = document.querySelector(".close-btn");
+
+      galleryItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          const imgSrc = item.querySelector("img").src;
+          const caption = item.querySelector("h3").textContent;
+
+          lightbox.classList.add("active");
+          lightboxImg.src = imgSrc;
+          lightboxCaption.textContent = caption;
+        });
+      });
+
+      closeBtn.addEventListener("click", () => {
+        lightbox.classList.remove("active");
+      });
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove("active");
+        }
+      });
+
+      // Toggle Description
+      function toggleDescription(button) {
+        const fullDescription = button.nextElementSibling;
+        if (
+          fullDescription.style.display === "none" ||
+          fullDescription.style.display === ""
+        ) {
+          fullDescription.style.display = "block";
+          button.textContent = "Sembunyikan Deskripsi";
+        } else {
+          fullDescription.style.display = "none";
+          button.textContent = "Lihat Deskripsi";
+        }
+      }
+    </script>
+  </body>
+</html>

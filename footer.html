@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Link Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+  <style>
+    /* CSS untuk footer */
+    footer {
+      width: 100%; /* Pastikan footer lebar 100% */
+      height: 17%;
+      background-color: rgb(94, 94, 94);
+      position: absolute;
+      padding: 2rem 0; /* Padding untuk memberikan ruang di dalam footer */
+      left: 0; /* Pastikan tidak ada pergeseran horizontal */
+      right: 0; /* Pastikan tidak ada pergeseran horizontal */
+    }
+
+    .container {
+      max-width: 100%; /* Pastikan container dalam footer tidak membatasi lebar */
+      box-sizing: border-box;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-white {
+      color: white;
+    }
+
+    .small {
+      font-size: 0.875rem;
+    }
+
+    /* Style untuk tombol media sosial */
+    .social-btn {
+      display: inline-block;
+      width: 40px; /* Ukuran lebar tombol sosial */
+      height: 40px; /* Ukuran tinggi tombol sosial */
+      border-radius: 50%;
+      background-color: #fff;
+      color: #333;
+      text-align: center;
+      line-height: 40px; /* Agar ikon berada di tengah tombol */
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .social-btn:hover {
+      color: #fff;
+    }
+
+    .whatsapp:hover {
+      background-color: #25d366; /* Warna latar belakang hijau untuk WhatsApp */
+    }
+
+    .instagram:hover {
+      background-color: #e1306c; /* Warna latar belakang untuk Instagram */
+    }
+
+    .line:hover {
+      background-color: #00c300; /* Warna latar belakang untuk Line */
+    }
+
+    /* Mengatur jarak antar ikon sosial */
+    .social-btn i {
+      font-size: 1.8rem; /* Ukuran ikon */
+    }
+
+    /* Menyusun media sosial dalam baris yang sama */
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px; /* Jarak antar tombol */
+    }
+  </style>
+  <body>
+    <div class="container">
+      <footer>
+        <!-- Bagian Copyright -->
+        <div class="text-center text-white">
+          <p class="m-0 small">
+            Copyright &copy; Taqiyya Kinayu Aruming Jagad
+          </p>
+        </div>
+
+        <!-- Bagian Media Sosial -->
+        <div class="social-icons mt-3">
+          <!-- WhatsApp -->
+          <a
+            href="https://wa.me/6285879162016"
+            class="social-btn whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fab fa-whatsapp"></i>
+          </a>
+
+          <!-- Instagram -->
+          <a
+            href="https://instagram.com/taqiyyakinayu"
+            class="social-btn instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+
+          <!-- Line -->
+          <a
+            href="https://line.me/ti/p/QWtQggJRfV"
+            class="social-btn line"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fab fa-line"></i>
+          </a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
